@@ -7,7 +7,7 @@ Barebones Unity3D project, works as a template for a seated VR experience. Imple
 
 This project requires Unity 4.6rc1 and the Oculus SDK v0.4.3. It was built using Oculus' 0.4.3.1 Unity3D integration. This project is fully compatible with the Free version of Unity, there is no Pro requirement.
 
-Once you have the pre-requisite stuff installed, it's quite easy to get started.
+Once you have the prerequisite stuff installed, it's quite easy to get started.
 
     git clone https://github.com/sam-kelly-dev/ovr-pilot.git
     Open the ovr-pilot folder in Unity as a project.
