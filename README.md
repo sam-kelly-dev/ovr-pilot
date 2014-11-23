@@ -1,6 +1,7 @@
 ovr-pilot
 =========
 
+![ovr-pilot](http://i.imgur.com/jp1JYSS.png)
 Barebones Unity3D project, works as a template for a seated VR experience. Implements basic keyboard, menu, and IK functionality.
 
 #### Getting Started
