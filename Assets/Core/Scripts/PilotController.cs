@@ -10,6 +10,11 @@ public class PilotController : MonoBehaviour {
 	string postText = "!";
 	float deltaTime;
 
+	Transform currentIKTargets;
+	[SerializeField] Transform defaultIKTargets;
+	[SerializeField] Transform kneeIKTargets;
+	[SerializeField] Transform controllerIKTargets;
+
 	// Use this for initialization
 	void Start () {
 		debugOverlay = GameObject.Find ("DebugOverlay");
@@ -46,5 +51,12 @@ public class PilotController : MonoBehaviour {
 		float fps = 1.0f / deltaTime;
 		string text = string.Format("{1:0} fps ({0:0} ms)", msec, fps);
 		fpsField.text = preText + text + postText;
+	}
+
+
+
+	void SetIKLimbTargets(IKLimb limb, Transform elbowTarget, Transform handTarget){
+		limb.elbowTarget = elbowTarget;
+		limb.target = handTarget;
 	}
 }

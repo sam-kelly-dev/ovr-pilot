@@ -54,6 +54,21 @@ State:
   - {fileID: 7400000, guid: 8b10a66da12a9764abd178e186b6ef02, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 36, y: -84, z: 0}
+  m_IKOnFeet: 1
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110234960
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Idle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: b3bde5db4356428489dfbb2d10bffcc4, type: 3}
+  m_ParentStateMachine: {fileID: 0}
+  m_Position: {x: 186, y: -80, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -66,7 +81,7 @@ State:
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 0}
+  - {fileID: 7400000, guid: b3bde5db4356428489dfbb2d10bffcc4, type: 3}
   m_ParentStateMachine: {fileID: 110744086}
   m_Position: {x: 175, y: -84, z: 0}
   m_IKOnFeet: 0
@@ -108,12 +123,27 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Idle
-  m_Speed: .0500000007
+  m_Speed: .00499999989
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: dffa50cfe77e0434bbfa71245b3dd529, type: 3}
+  - {fileID: 7400000, guid: b3bde5db4356428489dfbb2d10bffcc4, type: 3}
   m_ParentStateMachine: {fileID: 110787671}
   m_Position: {x: 163, y: -43, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110272254
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Idle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 8b10a66da12a9764abd178e186b6ef02, type: 3}
+  m_ParentStateMachine: {fileID: 0}
+  m_Position: {x: 249, y: -52, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
