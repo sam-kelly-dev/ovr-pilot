@@ -24,19 +24,15 @@ public class PilotController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		CalculateFPS ();
-		DisplayFPS ();
-
 		if (debugOverlayCanvas.enabled) {
 			DisplayFPS (); 
 		}
 		if(Input.GetKeyDown(KeyCode.Escape)){
 			Application.Quit();
 		}
-
 		if(Input.GetKeyDown(KeyCode.Tab)){
 			OVRManager.display.RecenterPose();
 		}
-
 		if (Input.GetKeyDown (KeyCode.D)) {
 			debugOverlayCanvas.enabled = !debugOverlayCanvas.enabled;
 		}
