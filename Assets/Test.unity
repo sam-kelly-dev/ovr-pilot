@@ -211,6 +211,33 @@ Transform:
   - {fileID: 10381358}
   m_Father: {fileID: 1478746569}
   m_RootOrder: 0
+--- !u!1 &20759493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 20759494}
+  m_Layer: 0
+  m_Name: LeftThumbJointTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &20759494
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 20759493}
+  m_LocalRotation: {x: .000123996433, y: -.00563637121, z: .021993544, w: .99974227}
+  m_LocalPosition: {x: -.0306202881, y: -.0183943696, z: .0488369577}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 862510343}
+  m_RootOrder: 14
 --- !u!1 &27038131
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,8 +365,8 @@ MonoBehaviour:
   hand: {fileID: 330445294}
   target: {fileID: 200974472}
   elbowTarget: {fileID: 882521340}
-  IsEnabled: 1
-  debug: 1
+  IsEnabled: 0
+  debug: 0
   transition: 1
   idleOptimization: 0
   handRotationPolicy: 2
@@ -425,6 +452,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 835055694}
   m_RootOrder: 6
+--- !u!1 &84668964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 84668965}
+  m_Layer: 0
+  m_Name: LeftThumbTipTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &84668965
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 84668964}
+  m_LocalRotation: {x: .000124025319, y: -.00563637121, z: .0219935458, w: .99974227}
+  m_LocalPosition: {x: -.0559527539, y: -.0271568242, z: .0693815649}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 862510343}
+  m_RootOrder: 13
 --- !u!1 &101974370
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,8 +792,8 @@ MonoBehaviour:
   hand: {fileID: 13559931}
   target: {fileID: 1048704111}
   elbowTarget: {fileID: 1003399723}
-  IsEnabled: 1
-  debug: 1
+  IsEnabled: 0
+  debug: 0
   transition: 1
   idleOptimization: 0
   handRotationPolicy: 2
@@ -787,8 +841,8 @@ MonoBehaviour:
   hand: {fileID: 265886715}
   target: {fileID: 1276701052}
   elbowTarget: {fileID: 1550736683}
-  IsEnabled: 1
-  debug: 1
+  IsEnabled: 0
+  debug: 0
   transition: 1
   idleOptimization: 0
   handRotationPolicy: 2
@@ -1034,8 +1088,8 @@ MonoBehaviour:
   hand: {fileID: 1988344214}
   target: {fileID: 600404471}
   elbowTarget: {fileID: 964958622}
-  IsEnabled: 1
-  debug: 1
+  IsEnabled: 0
+  debug: 0
   transition: 1
   idleOptimization: 0
   handRotationPolicy: 2
@@ -1157,6 +1211,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 431265100}
+  - 114: {fileID: 431265101}
   m_Layer: 0
   m_Name: RightHandControllerIK
   m_TagString: Untagged
@@ -1191,6 +1246,22 @@ Transform:
   - {fileID: 1305265516}
   m_Father: {fileID: 1140562180}
   m_RootOrder: 0
+--- !u!114 &431265101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 431265099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca0e3e786829d64d972bf7e2d64b7bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thumb: {fileID: 614525424}
+  index: {fileID: 1595271230}
+  middle: {fileID: 59127770}
+  ring: {fileID: 1221552301}
+  pinky: {fileID: 192540434}
 --- !u!1 &482967913
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,6 +1397,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 535760341}
+  - 114: {fileID: 535760342}
   m_Layer: 0
   m_Name: IKHandsOnController
   m_TagString: Untagged
@@ -1347,6 +1419,19 @@ Transform:
   - {fileID: 814361518}
   m_Father: {fileID: 1609613638}
   m_RootOrder: 1
+--- !u!114 &535760342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 535760340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e87a01ad24fc840aac0b9d09981603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHand: {fileID: 954451948}
+  rightHand: {fileID: 814361519}
 --- !u!1 &555513900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1501,8 +1586,8 @@ MonoBehaviour:
   hand: {fileID: 731181116}
   target: {fileID: 1976469917}
   elbowTarget: {fileID: 1305265516}
-  IsEnabled: 1
-  debug: 1
+  IsEnabled: 0
+  debug: 0
   transition: 1
   idleOptimization: 0
   handRotationPolicy: 0
@@ -1534,6 +1619,55 @@ Transform:
   - {fileID: 906459264}
   m_Father: {fileID: 306680489}
   m_RootOrder: 0
+--- !u!1 &640811356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 640811357}
+  - 114: {fileID: 640811358}
+  m_Layer: 0
+  m_Name: LeftIndexIKLimb
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &640811357
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 640811356}
+  m_LocalRotation: {x: -2.70910618e-07, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 862510343}
+  m_RootOrder: 0
+--- !u!114 &640811358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 640811356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62fc74be5d0ea434fa84a6add19b6c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upperArm: {fileID: 2073055854}
+  forearm: {fileID: 1188706613}
+  hand: {fileID: 1679661564}
+  target: {fileID: 1396633791}
+  elbowTarget: {fileID: 1280352300}
+  IsEnabled: 0
+  debug: 0
+  transition: 1
+  idleOptimization: 0
+  handRotationPolicy: 2
 --- !u!1 &675722171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1789,7 +1923,7 @@ Camera:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 754290396}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
@@ -1878,6 +2012,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 814361518}
+  - 114: {fileID: 814361519}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -1899,6 +2034,20 @@ Transform:
   - {fileID: 737189206}
   m_Father: {fileID: 535760341}
   m_RootOrder: 1
+--- !u!114 &814361519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 814361517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4ae99825174234409295698926dcb45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fingers: {fileID: 431265101}
+  target: {fileID: 1472350800}
+  elbow: {fileID: 737189206}
 --- !u!1 &815500754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1978,6 +2127,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 862510343}
+  - 114: {fileID: 862510344}
   m_Layer: 0
   m_Name: LeftHandControllerIK
   m_TagString: Untagged
@@ -1995,9 +2145,9 @@ Transform:
   m_LocalPosition: {x: -1.27042776e-08, y: -5.15804466e-08, z: 1.27037061e-10}
   m_LocalScale: {x: 1, y: .99999994, z: .99999994}
   m_Children:
-  - {fileID: 1340273357}
-  - {fileID: 2062091030}
-  - {fileID: 1501778748}
+  - {fileID: 640811357}
+  - {fileID: 1396633791}
+  - {fileID: 1280352300}
   - {fileID: 191459969}
   - {fileID: 1048704111}
   - {fileID: 1003399723}
@@ -2008,8 +2158,26 @@ Transform:
   - {fileID: 600404471}
   - {fileID: 964958622}
   - {fileID: 1161302008}
+  - {fileID: 84668965}
+  - {fileID: 20759494}
   m_Father: {fileID: 285263376}
   m_RootOrder: 0
+--- !u!114 &862510344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 862510342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca0e3e786829d64d972bf7e2d64b7bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thumb: {fileID: 1161302009}
+  index: {fileID: 640811358}
+  middle: {fileID: 191459970}
+  ring: {fileID: 321913000}
+  pinky: {fileID: 981128457}
 --- !u!1 &880531615
 GameObject:
   m_ObjectHideFlags: 0
@@ -2208,6 +2376,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 954451947}
+  - 114: {fileID: 954451948}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -2229,6 +2398,20 @@ Transform:
   - {fileID: 307066437}
   m_Father: {fileID: 535760341}
   m_RootOrder: 0
+--- !u!114 &954451948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 954451946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4ae99825174234409295698926dcb45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fingers: {fileID: 862510344}
+  target: {fileID: 304995449}
+  elbow: {fileID: 307066437}
 --- !u!1 &954889789
 GameObject:
   m_ObjectHideFlags: 0
@@ -2265,6 +2448,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 957979839}
+  - 114: {fileID: 957979840}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -2286,6 +2470,20 @@ Transform:
   - {fileID: 1854122162}
   m_Father: {fileID: 2003296348}
   m_RootOrder: 1
+--- !u!114 &957979840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 957979838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4ae99825174234409295698926dcb45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fingers: {fileID: 0}
+  target: {fileID: 1461514872}
+  elbow: {fileID: 1854122162}
 --- !u!1 &964958621
 GameObject:
   m_ObjectHideFlags: 0
@@ -2357,8 +2555,8 @@ MonoBehaviour:
   hand: {fileID: 1182141930}
   target: {fileID: 531169775}
   elbowTarget: {fileID: 1649358264}
-  IsEnabled: 1
-  debug: 1
+  IsEnabled: 0
+  debug: 0
   transition: 1
   idleOptimization: 0
   handRotationPolicy: 2
@@ -2832,13 +3030,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62fc74be5d0ea434fa84a6add19b6c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upperArm: {fileID: 2073055854}
-  forearm: {fileID: 1188706613}
-  hand: {fileID: 1679661564}
-  target: {fileID: 1501778748}
-  elbowTarget: {fileID: 2062091030}
-  IsEnabled: 1
-  debug: 1
+  upperArm: {fileID: 306680489}
+  forearm: {fileID: 620124287}
+  hand: {fileID: 906459264}
+  target: {fileID: 84668965}
+  elbowTarget: {fileID: 20759494}
+  IsEnabled: 0
+  debug: 0
   transition: 1
   idleOptimization: 0
   handRotationPolicy: 2
@@ -3014,8 +3212,8 @@ MonoBehaviour:
   hand: {fileID: 1886785187}
   target: {fileID: 1288811321}
   elbowTarget: {fileID: 2000828403}
-  IsEnabled: 1
-  debug: 1
+  IsEnabled: 0
+  debug: 0
   transition: 1
   idleOptimization: 0
   handRotationPolicy: 2
@@ -3137,6 +3335,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 431265100}
   m_RootOrder: 10
+--- !u!1 &1280352299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1280352300}
+  m_Layer: 0
+  m_Name: LeftIndexJointTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1280352300
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1280352299}
+  m_LocalRotation: {x: .00235320092, y: .0958249345, z: .0681746304, w: .993058026}
+  m_LocalPosition: {x: -.114198118, y: -.00916082971, z: .0401924402}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 862510343}
+  m_RootOrder: 2
 --- !u!1 &1288811320
 GameObject:
   m_ObjectHideFlags: 0
@@ -3308,9 +3533,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpsField: {fileID: 1709699327}
-  defaultIKTargets: {fileID: 0}
-  kneeIKTargets: {fileID: 0}
-  controllerIKTargets: {fileID: 0}
+  currentPose: {fileID: 0}
+  controllerPose: {fileID: 535760342}
+  relaxedPose: {fileID: 2003296349}
+  leftHand: {fileID: 1652185074}
+  leftThumb: {fileID: 1161302009}
+  leftIndex: {fileID: 640811358}
+  leftMiddle: {fileID: 191459970}
+  leftRing: {fileID: 321913000}
+  leftPinky: {fileID: 981128457}
+  rightHand: {fileID: 1313819683}
+  rightThumb: {fileID: 614525424}
+  rightIndex: {fileID: 1595271230}
+  rightMiddle: {fileID: 59127770}
+  rightRing: {fileID: 1221552301}
+  rightPinky: {fileID: 192540434}
 --- !u!1 &1313819681
 GameObject:
   m_ObjectHideFlags: 0
@@ -3416,55 +3653,6 @@ Transform:
   - {fileID: 340215510}
   m_Father: {fileID: 285263376}
   m_RootOrder: 5
---- !u!1 &1340273356
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1340273357}
-  - 114: {fileID: 1340273358}
-  m_Layer: 0
-  m_Name: LeftPointerIKLimb
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1340273357
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1340273356}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.95084586e-08, y: -3.52110163e-09, z: -9.14458642e-09}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 862510343}
-  m_RootOrder: 0
---- !u!114 &1340273358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1340273356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62fc74be5d0ea434fa84a6add19b6c84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  upperArm: {fileID: 2073055854}
-  forearm: {fileID: 1188706613}
-  hand: {fileID: 1679661564}
-  target: {fileID: 1501778748}
-  elbowTarget: {fileID: 2062091030}
-  IsEnabled: 1
-  debug: 1
-  transition: 1
-  idleOptimization: 0
-  handRotationPolicy: 2
 --- !u!1 &1364347430
 GameObject:
   m_ObjectHideFlags: 0
@@ -3491,6 +3679,33 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2108291430}
+  m_RootOrder: 1
+--- !u!1 &1396633790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1396633791}
+  m_Layer: 0
+  m_Name: LeftIndexTipTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1396633791
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1396633790}
+  m_LocalRotation: {x: -.0247660726, y: -.139135763, z: -.693543255, w: -.706417561}
+  m_LocalPosition: {x: -.0960000008, y: -.0562000014, z: .0529999994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 862510343}
   m_RootOrder: 1
 --- !u!1 &1403581935
 GameObject:
@@ -3826,33 +4041,6 @@ Transform:
   - {fileID: 19142280}
   m_Father: {fileID: 1140562180}
   m_RootOrder: 2
---- !u!1 &1501778747
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1501778748}
-  m_Layer: 0
-  m_Name: LeftPointerTipTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1501778748
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1501778747}
-  m_LocalRotation: {x: .000766196637, y: -.0553043149, z: -.881229222, w: -.469442129}
-  m_LocalPosition: {x: -.112000003, y: -.061999999, z: .0329999998}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 862510343}
-  m_RootOrder: 2
 --- !u!1 &1512798542
 GameObject:
   m_ObjectHideFlags: 0
@@ -4006,8 +4194,8 @@ MonoBehaviour:
   hand: {fileID: 10381358}
   target: {fileID: 1607579408}
   elbowTarget: {fileID: 1403581936}
-  IsEnabled: 1
-  debug: 1
+  IsEnabled: 0
+  debug: 0
   transition: 1
   idleOptimization: 0
   handRotationPolicy: 2
@@ -5063,7 +5251,7 @@ Camera:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1923282920}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
@@ -5206,6 +5394,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2003296348}
+  - 114: {fileID: 2003296349}
   m_Layer: 0
   m_Name: IKHandsOnKnees
   m_TagString: Untagged
@@ -5227,6 +5416,19 @@ Transform:
   - {fileID: 957979839}
   m_Father: {fileID: 1609613638}
   m_RootOrder: 0
+--- !u!114 &2003296349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2003296347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e87a01ad24fc840aac0b9d09981603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHand: {fileID: 2108291431}
+  rightHand: {fileID: 957979840}
 --- !u!1 &2003466089
 GameObject:
   m_ObjectHideFlags: 0
@@ -5282,33 +5484,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 482967914}
   m_RootOrder: 3
---- !u!1 &2062091029
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2062091030}
-  m_Layer: 0
-  m_Name: LeftPointerJointTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2062091030
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2062091029}
-  m_LocalRotation: {x: -2.70970702e-07, y: 4.52395952e-08, z: 6.74598795e-08, w: 1}
-  m_LocalPosition: {x: -.0989999697, y: -.00599992694, z: .0270000044}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 862510343}
-  m_RootOrder: 1
 --- !u!1 &2073055853
 GameObject:
   m_ObjectHideFlags: 0
@@ -5372,6 +5547,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2108291430}
+  - 114: {fileID: 2108291431}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -5393,6 +5569,20 @@ Transform:
   - {fileID: 1364347431}
   m_Father: {fileID: 2003296348}
   m_RootOrder: 0
+--- !u!114 &2108291431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2108291429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4ae99825174234409295698926dcb45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fingers: {fileID: 0}
+  target: {fileID: 1075816635}
+  elbow: {fileID: 1364347431}
 --- !u!1 &2130244727
 GameObject:
   m_ObjectHideFlags: 0

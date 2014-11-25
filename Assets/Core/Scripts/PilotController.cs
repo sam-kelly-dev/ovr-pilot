@@ -10,16 +10,15 @@ public class PilotController : MonoBehaviour {
 	string postText = "!";
 	float deltaTime;
 
-	Transform currentIKTargets;
-	[SerializeField] Transform defaultIKTargets;
-	[SerializeField] Transform kneeIKTargets;
-	[SerializeField] Transform controllerIKTargets;
-
 	// Use this for initialization
 	void Start () {
 		debugOverlay = GameObject.Find ("DebugOverlay");
 		debugOverlayCanvas = debugOverlay.GetComponent<Canvas> ();
+
+		SetIKLimbTargets (controllerPose);
 	}
+
+	 
 	
 	// Update is called once per frame
 	void Update () {
@@ -36,6 +35,13 @@ public class PilotController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.D)) {
 			debugOverlayCanvas.enabled = !debugOverlayCanvas.enabled;
 		}
+		if (Input.GetKeyDown (KeyCode.C)) {
+			if(currentPose == controllerPose){
+				SetIKLimbTargets(relaxedPose);
+			}else if(currentPose == relaxedPose){
+				SetIKLimbTargets(controllerPose);
+			}
+		}
 	}
 
 	void CalculateFPS(){
@@ -49,10 +55,92 @@ public class PilotController : MonoBehaviour {
 		fpsField.text = preText + text + postText;
 	}
 
+	[SerializeField] IKPose currentPose;
+	[SerializeField] IKPose controllerPose;
+	[SerializeField] IKPose relaxedPose;
+
+	void GripController(){
+		Debug.Log ("Gripping controller.");
+		currentPose = controllerPose;
+	}
+
+	void Relaxed(){
+		Debug.Log ("Relaxing hands.");
+		currentPose = relaxedPose;
+	}
+
+	[SerializeField] IKLimb leftHand;
+	[SerializeField] IKLimb leftThumb;
+	[SerializeField] IKLimb leftIndex;
+	[SerializeField] IKLimb leftMiddle;
+	[SerializeField] IKLimb leftRing;
+	[SerializeField] IKLimb leftPinky;
+	
+	[SerializeField] IKLimb rightHand;
+	[SerializeField] IKLimb rightThumb;
+	[SerializeField] IKLimb rightIndex;
+	[SerializeField] IKLimb rightMiddle;
+	[SerializeField] IKLimb rightRing;
+	[SerializeField] IKLimb rightPinky;
+
+	void SetIKLimbTargets(IKPose pose){
+		currentPose = pose;
+
+		leftHand.target = pose.leftHand.target;
+		leftHand.elbowTarget = pose.leftHand.elbow;
+		if (pose.leftHand.fingers != null) {
+			leftThumb.IsEnabled = true;
+			leftIndex.IsEnabled = true;
+			leftMiddle.IsEnabled = true;
+			leftRing.IsEnabled = true;
+			//leftPinky.IsEnabled = true;
+
+			leftThumb.target = pose.leftHand.fingers.thumb.target;
+			leftThumb.elbowTarget = pose.leftHand.fingers.thumb.elbowTarget;
+			leftIndex.target = pose.leftHand.fingers.index.target;
+			leftIndex.elbowTarget = pose.leftHand.fingers.index.elbowTarget;
+			leftMiddle.target = pose.leftHand.fingers.middle.target;
+			leftMiddle.elbowTarget = pose.leftHand.fingers.middle.elbowTarget;
+			leftRing.target = pose.leftHand.fingers.ring.target;
+			leftRing.elbowTarget = pose.leftHand.fingers.ring.elbowTarget;
+			//leftPinky.target = pose.leftHand.fingers.pinky.target;
+			//leftPinky.elbowTarget = pose.leftHand.fingers.pinky.elbowTarget;			 
+		}else
+		{
+			leftThumb.IsEnabled = false;
+			leftIndex.IsEnabled = false;
+			leftMiddle.IsEnabled = false;
+			leftRing.IsEnabled = false;
+			leftPinky.IsEnabled = false;
+		}
+
+		rightHand.target = pose.rightHand.target;
+		rightHand.elbowTarget = pose.rightHand.elbow;
+		if (pose.rightHand.fingers != null) {
+			rightThumb.IsEnabled = true;
+			rightIndex.IsEnabled = true;
+			rightMiddle.IsEnabled = true;
+			rightRing.IsEnabled = true;
+			rightPinky.IsEnabled = true;
+
+			rightThumb.target = pose.rightHand.fingers.thumb.target;
+			rightThumb.elbowTarget = pose.rightHand.fingers.thumb.elbowTarget;
+			rightIndex.target = pose.rightHand.fingers.index.target;
+			rightIndex.elbowTarget = pose.rightHand.fingers.index.elbowTarget;
+			rightMiddle.target = pose.rightHand.fingers.middle.target;
+			rightMiddle.elbowTarget = pose.rightHand.fingers.middle.elbowTarget;
+			rightRing.target = pose.rightHand.fingers.ring.target;
+			rightRing.elbowTarget = pose.rightHand.fingers.ring.elbowTarget;
+			rightPinky.target = pose.rightHand.fingers.pinky.target;
+			rightPinky.elbowTarget = pose.rightHand.fingers.pinky.elbowTarget;
+		}else{
+			rightThumb.IsEnabled = false;
+			rightIndex.IsEnabled = false;
+			rightMiddle.IsEnabled = false;
+			rightRing.IsEnabled = false;
+			rightPinky.IsEnabled = false;
+		}
 
 
-	void SetIKLimbTargets(IKLimb limb, Transform elbowTarget, Transform handTarget){
-		limb.elbowTarget = elbowTarget;
-		limb.target = handTarget;
 	}
 }
