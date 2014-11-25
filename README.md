@@ -24,7 +24,7 @@ The GUI that appears for the Debug menu is housed in the DebugOverlay GameObject
 
 #### The Controls
 
-Right now only keyboard controls are implemented. Escape quits the game, and "D" brings up a Debug Menu that displays the current FPS. Tab recalibrates the Rift's position.
+Right now only keyboard controls are implemented. Escape quits the game, and "D" brings up a Debug Menu that displays the current FPS. Tab recalibrates the Rift's position. Tap "C" to toggle between holding an Xbox controller and not holding an Xbox controller.
 
 #### Thanks
 
