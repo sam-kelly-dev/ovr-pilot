@@ -10,16 +10,32 @@ public class PilotController : MonoBehaviour {
 	string postText = "!";
 	float deltaTime;
 
+	SkinnedMeshRenderer smr;
+	Animator animator;
+
+	GameObject character;
+
 	// Use this for initialization
 	void Start () {
 		debugOverlay = GameObject.Find ("DebugOverlay");
 		debugOverlayCanvas = debugOverlay.GetComponent<Canvas> ();
 
+		animator = GetComponent<Animator> ();
 		SetIKLimbTargets (controllerPose);
-	}
+		animator.Play("Hands Layer.HoldingController");
+		animator.SetFloat("Fistiness", .5f);
+		controllerRenderer.enabled = true;
 
-	 
-	
+		//InitializeCharacter ();
+	}
+	void InitializeCharacter(GameObject prefab, Avatar avatar){
+		/*
+		character = GameObject.Instantiate (prefab, transform.position, transform.rotation);
+		Animator _anim = character.AddComponent<Animator> ();
+		_anim.avatar = avatar;*/
+		//leftHand = character.GetComponent<Animator>().GetBoneTransform(HumanBodyBones.
+
+	}
 	// Update is called once per frame
 	void Update () {
 		CalculateFPS ();
@@ -38,8 +54,15 @@ public class PilotController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.C)) {
 			if(currentPose == controllerPose){
 				SetIKLimbTargets(relaxedPose);
+				controllerRenderer.enabled = false;
+				animator.Play("Hands Layer.Idle");
+				Debug.Log ("Controller renderer is now enabled");
 			}else if(currentPose == relaxedPose){
 				SetIKLimbTargets(controllerPose);
+				animator.Play("Hands Layer.HoldingController");
+				animator.SetFloat("Fistiness", .5f);
+				controllerRenderer.enabled = true;
+				Debug.Log ("Controller renderer is now NOT enabled");
 			}
 		}
 	}
@@ -58,6 +81,7 @@ public class PilotController : MonoBehaviour {
 	[SerializeField] IKPose currentPose;
 	[SerializeField] IKPose controllerPose;
 	[SerializeField] IKPose relaxedPose;
+	[SerializeField] MeshRenderer controllerRenderer;
 
 	void GripController(){
 		Debug.Log ("Gripping controller.");
@@ -86,8 +110,14 @@ public class PilotController : MonoBehaviour {
 	void SetIKLimbTargets(IKPose pose){
 		currentPose = pose;
 
+		if (pose == controllerPose) {
+
+		}
+
 		leftHand.target = pose.leftHand.target;
 		leftHand.elbowTarget = pose.leftHand.elbow;
+
+		/*
 		if (pose.leftHand.fingers != null) {
 			leftThumb.IsEnabled = true;
 			leftIndex.IsEnabled = true;
@@ -113,9 +143,10 @@ public class PilotController : MonoBehaviour {
 			leftRing.IsEnabled = false;
 			leftPinky.IsEnabled = false;
 		}
-
+		*/
 		rightHand.target = pose.rightHand.target;
 		rightHand.elbowTarget = pose.rightHand.elbow;
+		/*
 		if (pose.rightHand.fingers != null) {
 			rightThumb.IsEnabled = true;
 			rightIndex.IsEnabled = true;
@@ -140,7 +171,7 @@ public class PilotController : MonoBehaviour {
 			rightRing.IsEnabled = false;
 			rightPinky.IsEnabled = false;
 		}
-
+*/
 
 	}
 }
