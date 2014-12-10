@@ -72,7 +72,7 @@ Support for the Autodesk Character Generator and UMA is coming soon.
 
 #### The Controls
 
-Right now only keyboard controls are implemented. Escape quits the game, and "D" brings up a Debug Menu that displays the current FPS. Tab recalibrates the Rift's position. Tap "C" to toggle between holding an Xbox controller and not holding an Xbox controller.
+Right now only keyboard controls are implemented. Escape will immediately quit the application, and Spacebar will recenter the pose. 
 
 #### Thanks
 
