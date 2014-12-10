@@ -2609,19 +2609,25 @@ MonoBehaviour:
   torsoJointBone: 9
   torsoTipBone: 10
   torsoFalseBaseParent: 54
-  torsoJointParent: 9
+  torsoJointParent: 54
   torsoRotationPolicy: 2
-  torsoJointOffset: {x: 0, y: 0, z: 0}
-  leftArmBaseBone: 11
+  torsoJointOffset: {x: 0, y: 0, z: 2}
+  leftArmBaseBone: 13
   leftArmJointBone: 15
   leftArmTipBone: 17
   leftArmJointParent: 54
+  leftArmFalseBaseParent: 54
   leftArmRotationPolicy: 2
-  rightArmBaseBone: 12
+  leftArmJointOffset: {x: -.200000003, y: .800000012, z: -.100000001}
+  leftArmTipRotation: {x: 0, y: 0, z: 0}
+  rightArmBaseBone: 14
   rightArmJointBone: 16
   rightArmTipBone: 18
   rightArmJointParent: 54
+  rightArmFalseBaseParent: 54
   rightArmRotationPolicy: 2
+  rightArmJointOffset: {x: .200000003, y: .800000012, z: -.100000001}
+  rightArmTipRotation: {x: 0, y: 0, z: 0}
   headIKOffset: {x: 0, y: 90, z: 270}
 --- !u!137 &13700000
 SkinnedMeshRenderer:

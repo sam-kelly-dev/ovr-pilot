@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: 014dd983c047b9e439e3151e0eee3133
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: RightFoot
+    100002: RightToeBase
+    100004: RightLeg
+    100006: RightUpLeg
+    100008: LeftToeBase
+    100010: LeftFoot
+    100012: LeftLeg
+    100014: LeftUpLeg
+    100016: RightHandIndex2
+    100018: RightHandIndex1
+    100020: RightHandThumb1
+    100022: RightHand
+    100024: RightForeArm
+    100026: RightArm
+    100028: RightShoulder
+    100030: LeftHandIndex2
+    100032: LeftHandIndex1
+    100034: LeftHandThumb1
+    100036: LeftInHandThumb
+    100038: LeftHand
+    100040: LeftForeArm
+    100042: LeftArm
+    100044: LeftShoulder
+    100046: HeadTop_End
+    100048: Head
+    100050: Neck1
+    100052: Neck
+    100054: Spine2
+    100056: Spine1
+    100058: Spine
+    100060: Hips
+    100062: LeftHandIndex3_End
+    100064: RightHandThumb2_End
+    100066: LeftFootToeBase_End
+    100068: RightHandIndex3_End
+    100070: //RootNode
+    100072: LeftHandThumb2_End
+    100074: vincent_Casual_Male_Lod_1
+    100076: RightInHandThumb
+    100078: RightFootToeBase_End
+    400000: RightFoot
+    400002: RightToeBase
+    400004: RightLeg
+    400006: RightUpLeg
+    400008: LeftToeBase
+    400010: LeftFoot
+    400012: LeftLeg
+    400014: LeftUpLeg
+    400016: RightHandIndex2
+    400018: RightHandIndex1
+    400020: RightHandThumb1
+    400022: RightHand
+    400024: RightForeArm
+    400026: RightArm
+    400028: RightShoulder
+    400030: LeftHandIndex2
+    400032: LeftHandIndex1
+    400034: LeftHandThumb1
+    400036: LeftInHandThumb
+    400038: LeftHand
+    400040: LeftForeArm
+    400042: LeftArm
+    400044: LeftShoulder
+    400046: HeadTop_End
+    400048: Head
+    400050: Neck1
+    400052: Neck
+    400054: Spine2
+    400056: Spine1
+    400058: Spine
+    400060: Hips
+    400062: LeftHandIndex3_End
+    400064: RightHandThumb2_End
+    400066: LeftFootToeBase_End
+    400068: RightHandIndex3_End
+    400070: //RootNode
+    400072: LeftHandThumb2_End
+    400074: vincent_Casual_Male_Lod_1
+    400076: RightInHandThumb
+    400078: RightFootToeBase_End
+    4300000: vincent_Casual_Male_Lod_1
+    11100000: //RootNode
+    13700000: Hips
+    13700002: vincent_Casual_Male_Lod_1
+  materials:
+    importMaterials: 1
+    materialName: 3
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
