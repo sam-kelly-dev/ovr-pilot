@@ -44,7 +44,7 @@ The four example Avatars are all based on widely available assets.
 
 The GlassesGuy and MakeHuman both need some work on the arms. They twist the wrong way. It's a known issue. If you can make them work, let me know!
 
-*Creating an avatar*: 
+**Creating an avatar**: 
 
 1. Import your model, hopefully similar to one of the examples.
 2. In the "Rig" menu of the imported object, Configure the avatar. Default settings should be good enough, but this might be a good thing to try tweaking later on. Click Apply, and then Done.
@@ -59,15 +59,15 @@ If your avatar is not compatible, there's a ton of ways you can try to fix it. Y
 
 The Pilot object will create several child objects:
 
-*YourModelName(Clone)*- This is the model- the mesh(es), and the bones that control it. 
+**YourModelName(Clone)**- This is the model- the mesh(es), and the bones that control it. 
 
-*OVRHeadCamera(Clone)*- This is the Oculus headset. This drives the IKLimbTorso movements.
+**OVRHeadCamera(Clone)**- This is the Oculus headset. This drives the IKLimbTorso movements.
 
-*IKLimbXX* - These are the actual IK objects that override the Animator. You can find them in PilotScript. The bones that the IKLimb is referencing is set when the Pilot is instantiated, and you can select the targets on the Avatar's Prefab that you created above. Running the game again will apply the new IKLimb references.
+**IKLimbXX** - These are the actual IK objects that override the Animator. You can find them in PilotScript. The bones that the IKLimb is referencing is set when the Pilot is instantiated, and you can select the targets on the Avatar's Prefab that you created above. Running the game again will apply the new IKLimb references.
 
-*Joint and Tip Targets*- These are the Transforms that direct the IK limbs. The Tip position is where the head or hands are trying to get to, and the Joint positions are where the meeting point of the two bones is supposed to be. The Tip overrides the Joint.
+**Joint and Tip Targets**- These are the Transforms that direct the IK limbs. The Tip position is where the head or hands are trying to get to, and the Joint positions are where the meeting point of the two bones is supposed to be. The Tip overrides the Joint.
 
-*Moving the Hands*- Just look for the LeftArmTipTarget and RightArmTipTarget and move them around. They're in the root of the Heirarchy by default. If it looks weird, try moving the JointTarget for the arm as well.
+**Moving the Hands**- Just look for the LeftArmTipTarget and RightArmTipTarget and move them around. They're in the root of the Heirarchy by default. If it looks weird, try moving the JointTarget for the arm as well.
 
 Support for the Autodesk Character Generator and UMA is coming soon.
 
