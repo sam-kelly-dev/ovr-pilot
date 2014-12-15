@@ -12,6 +12,7 @@ Once you have the prerequisite stuff installed, it's quite easy to get started.
 
     git clone https://github.com/sam-kelly-dev/ovr-pilot.git
     Open the ovr-pilot folder in Unity as a project.
+    Open the scene "Test" from the ovr-pilot folder.
     Press Play.
 
 #### Using This Template
