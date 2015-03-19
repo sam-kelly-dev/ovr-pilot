@@ -56,7 +56,7 @@ public class PilotScript : MonoBehaviour {
 		Transform head = animator.GetBoneTransform (HumanBodyBones.Head);
 		hmd = (GameObject) GameObject.Instantiate (headCamera, head.position, Quaternion.identity);
 		hmd.transform.parent = head;
-		hmd.transform.localPosition = Vector3.zero + (Vector3.down * .25f); //Move the hmd down a little bit from where the head is, do this better.
+		hmd.transform.localPosition = Vector3.zero + (Vector3.down * .25f)+avatarHeadlookOffset; //Move the hmd down a little bit from where the head is, do this better.
 
 		//hmd.transform.localRotation = Quaternion.identity;
 		hmd.transform.parent = transform;
@@ -95,6 +95,8 @@ public class PilotScript : MonoBehaviour {
 		);
 		ikLimbTorso.target.parent = hmdTarget;
 		ikLimbTorso.elbowTarget.parent = animator.GetBoneTransform(rig.torsoJointParent);
+		if(ikLimbTorso.elbowTarget.parent==null)
+			ikLimbTorso.elbowTarget.parent = this.transform;
 		ikLimbTorso.IsEnabled = true;
 		Debug.Log ("- Created Torso from Rig");
 
@@ -151,7 +153,8 @@ public class PilotScript : MonoBehaviour {
 			jointTarget.transform.parent = animator.GetBoneTransform(elbowParent);
 			jointTarget.transform.localPosition = Vector3.zero;
 		}else{
-			jointTarget.transform.parent = transform;
+			jointTarget.transform.parent = this.transform;
+			jointTarget.transform.localPosition = Vector3.zero;
 		}
 		if(elbowOffset != Vector3.zero){
 			jointTarget.transform.localPosition += elbowOffset;
@@ -159,6 +162,7 @@ public class PilotScript : MonoBehaviour {
 
 		//Create the IKLimb Tip Target GameObject
 		GameObject tipTarget = new GameObject (name + "TipTarget");
+		tipTarget.transform.parent = this.transform;
 		tipTarget.transform.position = tipT.position;
 		tipTarget.transform.rotation = tipT.rotation;
 		
