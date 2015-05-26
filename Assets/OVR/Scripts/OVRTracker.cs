@@ -55,10 +55,12 @@ public class OVRTracker
 	{
 	    get {
 #if !UNITY_ANDROID || UNITY_EDITOR
-			return (OVRManager.capiHmd.GetTrackingState().StatusFlags & (uint)StatusBits.PositionConnected) != 0;
-#else
-			return false;
+			if (OVRManager.instance.isVRPresent)
+			{
+				return (OVRManager.capiHmd.GetTrackingState(0f).StatusFlags & (uint)StatusBits.PositionConnected) != 0;
+			}
 #endif
+			return false;
 		}
 	}
 
@@ -69,10 +71,12 @@ public class OVRTracker
 	{
 		get {
 #if !UNITY_ANDROID || UNITY_EDITOR
-			return (OVRManager.capiHmd.GetTrackingState().StatusFlags & (uint)StatusBits.PositionTracked) != 0;
-#else
-			return false;
+			if (OVRManager.instance.isVRPresent)
+			{
+				return (OVRManager.capiHmd.GetTrackingState(0f).StatusFlags & (uint)StatusBits.PositionTracked) != 0;
+			}
 #endif
+			return false;
 		}
 	}
 
@@ -83,15 +87,20 @@ public class OVRTracker
 	{
 		get {
 #if !UNITY_ANDROID || UNITY_EDITOR
+			if (OVRManager.instance.isVRPresent)
+			{
 			uint trackingCaps = OVRManager.capiHmd.GetDesc().TrackingCaps;
 			return (trackingCaps & (uint)TrackingCaps.Position) != 0;
-#else
-			return false;
+			}
 #endif
+			return false;
 		}
 
 		set {
 #if !UNITY_ANDROID || UNITY_EDITOR
+			if (OVRManager.instance.isVRPresent)
+				return;
+
 			uint trackingCaps = (uint)TrackingCaps.Orientation | (uint)TrackingCaps.MagYawCorrection;
 
 			if (value)
@@ -109,6 +118,8 @@ public class OVRTracker
 	{
 		get {
 #if !UNITY_ANDROID || UNITY_EDITOR
+			if (OVRManager.instance.isVRPresent)
+			{
 			HmdDesc desc = OVRManager.capiHmd.GetDesc();
 
 			return new Frustum
@@ -117,32 +128,34 @@ public class OVRTracker
 				farZ = desc.CameraFrustumFarZInMeters,
 				fov = Mathf.Rad2Deg * new Vector2(desc.CameraFrustumHFovInRadians, desc.CameraFrustumVFovInRadians)
 			};
-#else
+			}
+#endif
 			return new Frustum
 			{
 				nearZ = 0.1f,
 				farZ = 1000.0f,
 				fov = new Vector2(90.0f, 90.0f)
 			};
-#endif
 		}
 	}
 
 	/// <summary>
 	/// Gets the tracker's pose, relative to the head's pose at the time of the last pose recentering.
 	/// </summary>
-	public OVRPose GetPose(double predictionTime = 0d)
+	public OVRPose GetPose(double predictionTime)
 	{
 #if !UNITY_ANDROID || UNITY_EDITOR
+		if (OVRManager.instance.isVRPresent)
+		{
 		double abs_time_plus_pred = Hmd.GetTimeInSeconds() + predictionTime;
 
-		return OVRManager.capiHmd.GetTrackingState(abs_time_plus_pred).CameraPose.ToPose();
-#else
+		return OVRManager.capiHmd.GetTrackingState(abs_time_plus_pred).CameraPose.ToPose(true);
+		}
+#endif
 		return new OVRPose
 		{
 			position = Vector3.zero,
 			orientation = Quaternion.identity
 		};
-#endif
 	}
 }

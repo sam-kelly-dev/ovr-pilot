@@ -30,6 +30,8 @@ public enum RenderEventType
 	// PC
 	BeginFrame = 0,
 	EndFrame = 1,
+	Initialize = 2,
+	Destroy = 3,
 
 	// Android
 	InitRenderThread = 0,
@@ -40,6 +42,9 @@ public enum RenderEventType
 	TimeWarp = 5,
 	PlatformUI = 6,
 	PlatformUIConfirmQuit = 7,
+	ResetVrModeParms = 8,
+	PlatformUITutorial = 9,
+	ShutdownRenderThread = 10,
 }
 
 /// <summary>

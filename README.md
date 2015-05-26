@@ -29,7 +29,7 @@ In /Prefabs/Avatars, you can find the different example characters. These models
 
 In /Prefabs/Animation/Animator Controllers, you'll find PilotAnimatorController. This is a very simple Mecanim controller that drives the base animation for the character. If you disable any of the IKLimb GameObjects, it will revert those bones back to the current animation state of the Animator. The Animator uses Layers and Avatar Masks to isolate the different limbs, so you can apply the sitting animation, and then override the Arms Layer with the T-Pose instead of sitting down, or smoothly transition from one state to another.
 
-The IKLimb script is not perfect. I don't understand it, I haven't even tried to yet. It's not perfect, and sometimes the mesh deforms in weird ways. You can see this with some of the arms. If you have a solution, submit a pull request or get in touch with me. 
+The IKLimb script is not perfect. I don't understand it, I haven't even tried to yet. It's not perfect, and sometimes the mesh deforms in weird ways. ~~You can see this with some of the arms.~~ (Fixed, face still clips through the camera -JS) If you have a solution, submit a pull request or get in touch with me. 
 
 #### Pilots
 
