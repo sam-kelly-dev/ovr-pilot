@@ -59,9 +59,9 @@ public class OVRPlayerController : MonoBehaviour
 	public float RotationRatchet = 45.0f;
 
 	/// <summary>
-	/// The player's current rotation about the Y axis.
+	/// If true, reset the initial yaw of the player controller when the Hmd pose is recentered.
 	/// </summary>
-	private float YRotation = 0.0f;
+	public bool HmdResetsY = true;
 
 	/// <summary>
 	/// If true, tracking data from a child OVRCameraRig will update the direction of movement.
@@ -72,20 +72,20 @@ public class OVRPlayerController : MonoBehaviour
 	/// Modifies the strength of gravity.
 	/// </summary>
 	public float GravityModifier = 0.379f;
-
-	private float MoveScale = 1.0f;
-	private Vector3 MoveThrottle = Vector3.zero;
-	private float FallSpeed = 0.0f;	
-	private OVRPose? InitialPose;
 	
 	/// <summary>
 	/// If true, each OVRPlayerController will use the player's physical height.
 	/// </summary>
-	public bool useProfileHeight = true;
+	public bool useProfileData = true;
 
 	protected CharacterController Controller = null;
-	protected OVRCameraRig CameraController = null;
+	protected OVRCameraRig CameraRig = null;
 
+	private float MoveScale = 1.0f;
+	private Vector3 MoveThrottle = Vector3.zero;
+	private float FallSpeed = 0.0f;
+	private OVRPose? InitialPose;
+	private float InitialYRotation = 0.0f;
 	private float MoveScaleMultiplier = 1.0f;
 	private float RotationScaleMultiplier = 1.0f;
 	private bool  SkipMouseRotation = false;
@@ -93,6 +93,14 @@ public class OVRPlayerController : MonoBehaviour
 	private bool prevHatLeft = false;
 	private bool prevHatRight = false;
 	private float SimulationRate = 60f;
+
+	void Start()
+	{
+		// Add eye-depth as a camera offset from the player controller
+		var p = CameraRig.transform.localPosition;
+		p.z = OVRManager.profile.eyeDepth;
+		CameraRig.transform.localPosition = p;
+	}
 
 	void Awake()
 	{
@@ -103,44 +111,63 @@ public class OVRPlayerController : MonoBehaviour
 
 		// We use OVRCameraRig to set rotations to cameras,
 		// and to be influenced by rotation
-		OVRCameraRig[] CameraControllers;
-		CameraControllers = gameObject.GetComponentsInChildren<OVRCameraRig>();
+		OVRCameraRig[] CameraRigs = gameObject.GetComponentsInChildren<OVRCameraRig>();
 
-		if(CameraControllers.Length == 0)
+		if(CameraRigs.Length == 0)
 			Debug.LogWarning("OVRPlayerController: No OVRCameraRig attached.");
-		else if (CameraControllers.Length > 1)
+		else if (CameraRigs.Length > 1)
 			Debug.LogWarning("OVRPlayerController: More then 1 OVRCameraRig attached.");
 		else
-			CameraController = CameraControllers[0];
+			CameraRig = CameraRigs[0];
 
-		YRotation = transform.rotation.eulerAngles.y;
+		InitialYRotation = transform.rotation.eulerAngles.y;
+	}
 
-#if UNITY_ANDROID && !UNITY_EDITOR
+	void OnEnable()
+	{
 		OVRManager.display.RecenteredPose += ResetOrientation;
-#endif
+
+		if (CameraRig != null)
+		{
+			CameraRig.UpdatedAnchors += UpdateTransform;
+		}
+	}
+
+	void OnDisable()
+	{
+		OVRManager.display.RecenteredPose -= ResetOrientation;
+
+		if (CameraRig != null)
+		{
+			CameraRig.UpdatedAnchors -= UpdateTransform;
+		}
 	}
 
 	protected virtual void Update()
 	{
-		if (useProfileHeight)
+		if (useProfileData)
 		{
 			if (InitialPose == null)
 			{
-				InitialPose = new OVRPose() {
-					position = CameraController.transform.localPosition,
-					orientation = CameraController.transform.localRotation
+				// Save the initial pose so it can be recovered if useProfileData
+				// is turned off later.
+				InitialPose = new OVRPose()
+				{
+					position = CameraRig.transform.localPosition,
+					orientation = CameraRig.transform.localRotation
 				};
 			}
 
-			var p = CameraController.transform.localPosition;
-			p.y = OVRManager.profile.eyeHeight - 0.5f * Controller.height;
-			p.z = OVRManager.profile.eyeDepth;
-			CameraController.transform.localPosition = p;
+			var p = CameraRig.transform.localPosition;
+			p.y = OVRManager.profile.eyeHeight - 0.5f * Controller.height
+				+ Controller.center.y;
+			CameraRig.transform.localPosition = p;
 		}
 		else if (InitialPose != null)
 		{
-			CameraController.transform.localPosition = InitialPose.Value.position;
-			CameraController.transform.localRotation = InitialPose.Value.orientation;
+			// Return to the initial pose if useProfileData was turned off at runtime
+			CameraRig.transform.localPosition = InitialPose.Value.position;
+			CameraRig.transform.localRotation = InitialPose.Value.orientation;
 			InitialPose = null;
 		}
 
@@ -227,20 +254,23 @@ public class OVRPlayerController : MonoBehaviour
 		if (dpad_move || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
 			moveInfluence *= 2.0f;
 
-		Transform dirXform = (HmdRotatesY) ? CameraController.centerEyeAnchor : transform;
+		Quaternion ort = transform.rotation;
+		Vector3 ortEuler = ort.eulerAngles;
+		ortEuler.z = ortEuler.x = 0f;
+		ort = Quaternion.Euler(ortEuler);
 
-			if (moveForward)
-			MoveThrottle += dirXform.TransformDirection(Vector3.forward * moveInfluence * transform.lossyScale.z);
-			if (moveBack)
-			MoveThrottle += dirXform.TransformDirection(Vector3.back * moveInfluence * transform.lossyScale.z) * BackAndSideDampen;
-			if (moveLeft)
-			MoveThrottle += dirXform.TransformDirection(Vector3.left * moveInfluence * transform.lossyScale.x) * BackAndSideDampen;
-			if (moveRight)
-			MoveThrottle += dirXform.TransformDirection(Vector3.right * moveInfluence * transform.lossyScale.x) * BackAndSideDampen;
-
-		bool curHatLeft = OVRGamepadController.GPC_GetButton(OVRGamepadController.Button.LeftShoulder);
+		if (moveForward)
+			MoveThrottle += ort * (transform.lossyScale.z * moveInfluence * Vector3.forward);
+		if (moveBack)
+			MoveThrottle += ort * (transform.lossyScale.z * moveInfluence * BackAndSideDampen * Vector3.back);
+		if (moveLeft)
+			MoveThrottle += ort * (transform.lossyScale.x * moveInfluence * BackAndSideDampen * Vector3.left);
+		if (moveRight)
+			MoveThrottle += ort * (transform.lossyScale.x * moveInfluence * BackAndSideDampen * Vector3.right);
 
 		Vector3 euler = transform.rotation.eulerAngles;
+
+		bool curHatLeft = OVRGamepadController.GPC_GetButton(OVRGamepadController.Button.LeftShoulder);
 
 		if (curHatLeft && !prevHatLeft)
 			euler.y -= RotationRatchet;
@@ -263,8 +293,10 @@ public class OVRPlayerController : MonoBehaviour
 
 		float rotateInfluence = SimulationRate * Time.deltaTime * RotationAmount * RotationScaleMultiplier;
 
+#if !UNITY_ANDROID || UNITY_EDITOR
 		if (!SkipMouseRotation)
 			euler.y += Input.GetAxis("Mouse X") * rotateInfluence * 3.25f;
+#endif
 
 		moveInfluence = SimulationRate * Time.deltaTime * Acceleration * 0.1f * MoveScale * MoveScaleMultiplier;
 
@@ -272,30 +304,46 @@ public class OVRPlayerController : MonoBehaviour
 		moveInfluence *= 1.0f + OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.LeftTrigger);
 #endif
 
-			float leftAxisX = OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.LeftXAxis);
-			float leftAxisY = OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.LeftYAxis);
+		float leftAxisX = OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.LeftXAxis);
+		float leftAxisY = OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.LeftYAxis);
 
-			if(leftAxisY > 0.0f)
-	    		MoveThrottle += leftAxisY
-				* dirXform.TransformDirection(Vector3.forward * moveInfluence);
+		if(leftAxisY > 0.0f)
+			MoveThrottle += ort * (leftAxisY * moveInfluence * Vector3.forward);
 
-			if(leftAxisY < 0.0f)
-	    		MoveThrottle += Mathf.Abs(leftAxisY)
-				* dirXform.TransformDirection(Vector3.back * moveInfluence) * BackAndSideDampen;
+		if(leftAxisY < 0.0f)
+			MoveThrottle += ort * (Mathf.Abs(leftAxisY) * moveInfluence * BackAndSideDampen * Vector3.back);
 
-			if(leftAxisX < 0.0f)
-	    		MoveThrottle += Mathf.Abs(leftAxisX)
-				* dirXform.TransformDirection(Vector3.left * moveInfluence) * BackAndSideDampen;
+		if(leftAxisX < 0.0f)
+			MoveThrottle += ort * (Mathf.Abs(leftAxisX) * moveInfluence * BackAndSideDampen * Vector3.left);
 
-			if(leftAxisX > 0.0f)
-				MoveThrottle += leftAxisX
-				* dirXform.TransformDirection(Vector3.right * moveInfluence) * BackAndSideDampen;
+		if(leftAxisX > 0.0f)
+			MoveThrottle += ort * (leftAxisX * moveInfluence * BackAndSideDampen * Vector3.right);
 
 		float rightAxisX = OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.RightXAxis);
 
 		euler.y += rightAxisX * rotateInfluence;
 
 		transform.rotation = Quaternion.Euler(euler);
+	}
+
+	/// <summary>
+	/// Invoked by OVRCameraRig's UpdatedAnchors callback. Allows the Hmd rotation to update the facing direction of the player.
+	/// </summary>
+	public void UpdateTransform(OVRCameraRig rig)
+	{
+		Transform root = CameraRig.trackingSpace;
+		Transform centerEye = CameraRig.centerEyeAnchor;
+
+		if (HmdRotatesY)
+		{
+			Vector3 prevPos = root.position;
+			Quaternion prevRot = root.rotation;
+
+			transform.rotation = Quaternion.Euler(0.0f, centerEye.rotation.eulerAngles.y, 0.0f);
+
+			root.position = prevPos;
+			root.rotation = prevRot;
+		}
 	}
 
 	/// <summary>
@@ -398,9 +446,12 @@ public class OVRPlayerController : MonoBehaviour
 	/// </summary>
 	public void ResetOrientation()
 	{
-		Vector3 euler = transform.rotation.eulerAngles;
-		euler.y = YRotation;
-		transform.rotation = Quaternion.Euler(euler);
+		if (HmdResetsY)
+		{
+			Vector3 euler = transform.rotation.eulerAngles;
+			euler.y = InitialYRotation;
+			transform.rotation = Quaternion.Euler(euler);
+		}
 	}
 }
 

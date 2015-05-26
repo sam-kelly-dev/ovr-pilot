@@ -92,7 +92,7 @@ public static class OVRExtensions
 	/// </summary>
 	/// <returns>The vector as a Unity Vector3.</returns>
 	/// <param name="size">The vector as a C# Vector3.</param>
-	public static Vector3 ToVector3(this Vector3f vec, bool rhToLh = true)
+	public static Vector3 ToVector3(this Vector3f vec, bool rhToLh)
 	{
 		Vector3 v = new Vector3(vec.x, vec.y, vec.z);
 
@@ -107,7 +107,7 @@ public static class OVRExtensions
 	/// </summary>
 	/// <returns>The quaternion as a Unity Quaternion.</returns>
 	/// <param name="size">The quaternion as a C# Quatf.</param>
-	public static Quaternion ToQuaternion(this Quatf quat, bool rhToLh = true)
+	public static Quaternion ToQuaternion(this Quatf quat, bool rhToLh)
 	{
 		Quaternion q = new Quaternion(quat.x, quat.y, quat.z, quat.w);
 
@@ -125,7 +125,7 @@ public static class OVRExtensions
 	/// </summary>
 	/// <returns>The pose as a Unity OVRPose.</returns>
 	/// <param name="size">The pose as a C# Posef.</param>
-	public static OVRPose ToPose(this Posef pose, bool rhToLh = true)
+	public static OVRPose ToPose(this Posef pose, bool rhToLh)
 	{
 		return new OVRPose
 		{

@@ -89,10 +89,11 @@ public class PilotScript : MonoBehaviour
 				hmd = (GameObject)GameObject.Instantiate (headCamera, head.position, Quaternion.identity);
 				hmd.transform.parent = head;
 				hmd.transform.localPosition = Vector3.zero + (Vector3.down * .25f) + avatarHeadlookOffset; //Move the hmd down a little bit from where the head is, do this better.
-		//hmd.transform.rotation = Quaternion.identity;		
+		hmd.transform.rotation = Quaternion.identity;		
 		hmd.transform.parent = transform;
 				hmdTarget = hmd.transform;
-		hmdTarget.rotation.eulerAngles.Set (0, 0, 0); //hmdTarget.localRotation = head.localRotation;
+		hmd.transform.localRotation = Quaternion.identity;
+		//hmdTarget.rotation.eulerAngles.Set (0, 0, 0); //hmdTarget.localRotation = head.localRotation;
 		}
 
 		public void CreateCharacter (GameObject prefab)
