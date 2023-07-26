@@ -48,9 +48,9 @@ The GlassesGuy and MakeHuman both need some work on the arms. They twist the wro
 
 1. Import your model, hopefully similar to one of the examples.
 2. In the "Rig" menu of the imported object, Configure the avatar. Default settings should be good enough, but this might be a good thing to try tweaking later on. Click Apply, and then Done.
-3. Create an instance of the model in the editor window. Drag it from the Heirarchy back into the Project folder to make a Prefab.
+3. Create an instance of the model in the editor window. Drag it from the hierarchy back into the Project folder to make a Prefab.
 4. Add an Animator object to the prefab. Give it the PilotAnimatorController, and the Avatar that you created in step 2.
-5. Find the Pilot object in your Heirarchy, or drop one into your scene if it's not already there, and select it. Drop the new prefab you've created onto the DefaultAvatar slot in the Inspector.
+5. Find the Pilot object in your hierarchy, or drop one into your scene if it's not already there, and select it. Drop the new prefab you've created onto the DefaultAvatar slot in the Inspector.
 6. Press play. 
 
 If your avatar is compatible, you should be good to go. If it's not, start messing with the bone assignments in the Prefab. 
@@ -67,7 +67,7 @@ The Pilot object will create several child objects:
 
 **Joint and Tip Targets**- These are the Transforms that direct the IK limbs. The Tip position is where the head or hands are trying to get to, and the Joint positions are where the meeting point of the two bones is supposed to be. The Tip overrides the Joint.
 
-**Moving the Hands**- Just look for the LeftArmTipTarget and RightArmTipTarget and move them around. They're in the root of the Heirarchy by default. If it looks weird, try moving the JointTarget for the arm as well.
+**Moving the Hands**- Just look for the LeftArmTipTarget and RightArmTipTarget and move them around. They're in the root of the hierarchy by default. If it looks weird, try moving the JointTarget for the arm as well.
 
 Support for the Autodesk Character Generator and UMA is coming soon.
 
